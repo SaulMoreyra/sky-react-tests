@@ -1,16 +1,21 @@
 import React from "react";
 import { PrimaryButtonStyled, SecondaryButtonStyled } from "./Button.styled";
 
-type Props = {
-  children: string | JSX.Element | JSX.Element[];
-  type: "primary" | "secondary";
+export type ButtonProps = {
+  children?: string | JSX.Element | JSX.Element[];
+  type?: "primary" | "secondary";
+  onClick?: () => void;
 };
 
-const Button = ({ type, children }: Props) => {
+const Button = ({ type = "primary", children, ...props }: ButtonProps) => {
   const Component =
     type === "primary" ? PrimaryButtonStyled : SecondaryButtonStyled;
 
-  return <Component>{children}</Component>;
+  return (
+    <Component data-test-id="button" {...props}>
+      {children}
+    </Component>
+  );
 };
 
 export default Button;
