@@ -1,15 +1,18 @@
-import React from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { PrimaryButtonStyled, SecondaryButtonStyled } from "./Button.styled";
 
-export type ButtonProps = {
+export type ButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   children?: string | JSX.Element | JSX.Element[];
-  type?: "primary" | "secondary";
-  onClick?: () => void;
+  variant?: "primary" | "secondary";
+  disabled?: boolean;
 };
 
-const Button = ({ type = "primary", children, ...props }: ButtonProps) => {
+const Button = ({ variant = "primary", children, ...props }: ButtonProps) => {
   const Component =
-    type === "primary" ? PrimaryButtonStyled : SecondaryButtonStyled;
+    variant === "primary" ? PrimaryButtonStyled : SecondaryButtonStyled;
 
   return (
     <Component data-test-id="button" {...props}>

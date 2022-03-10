@@ -27,7 +27,7 @@ describe("Button render", () => {
     const onClick = jest.fn();
     const Label = "primary";
     const { getByText } = render(
-      <ButtonWrapped type="primary" onClick={onClick}>
+      <ButtonWrapped variant="primary" onClick={onClick}>
         {Label}
       </ButtonWrapped>
     );
@@ -41,7 +41,7 @@ describe("Button render", () => {
     const onClick = jest.fn();
     const Label = "secondary";
     const { getByText } = render(
-      <ButtonWrapped type="secondary" onClick={onClick}>
+      <ButtonWrapped variant="secondary" onClick={onClick}>
         {Label}
       </ButtonWrapped>
     );
