@@ -1,0 +1,4 @@
+export const ERROR_PROVIDERS = "Ha ocurrido un error al consultar paqueterias";
+export const ERROR_LABEL_EXISTS = "Ya ha sido creada una guia";
+export const ERROR_LABEL_CREATION =
+  "Ocurrió un problema, intenta con otro proveedor";
