@@ -1,9 +1,10 @@
-import { breakpoints, spacing, fade } from "utils/StyleUtils";
+import { breakpoints, spacing, fade, getColor } from "utils/StyleUtils";
 
 const theme = {
   breakpoints,
   spacing,
   fade,
+  getColor,
   black: "#000000",
   lightBlack: "#2e2e2e",
   white: "#FFFFFF",
@@ -14,7 +15,8 @@ const theme = {
   primaryDark: "#3C1FE0",
   error: "#f44336",
   success: "#28a745",
-  warning: "#ffc107",
+  warning: "#ff8c00",
+  info: "#0096FF",
 };
 
 export type Theme = typeof theme;
