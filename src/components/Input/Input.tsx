@@ -1,23 +1,19 @@
+import InputBase from "components/InputBase";
+import { InputBaseProps } from "components/InputBase/InputBase";
 import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
-import {
-  InputBaseStyled,
-  InputContainerStyled,
-  InputLabelStyled,
-} from "./Input.styled";
+import { InputBaseStyled } from "./Input.styled";
 
-type InputProps = DetailedHTMLProps<
+export type InputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
-> & { label?: React.ReactNode | string; error?: boolean };
+> &
+  InputBaseProps;
 
-const Input = ({ label, ...props }: InputProps) => {
+const Input = ({ label, message, fullWidth, ...props }: InputProps) => {
   return (
-    <InputContainerStyled>
-      <InputLabelStyled htmlFor="input-base" error={props.error}>
-        {label}
-      </InputLabelStyled>
-      <InputBaseStyled id="input-base" {...props} />
-    </InputContainerStyled>
+    <InputBase {...{ label, message, fullWidth }}>
+      <InputBaseStyled {...props} fullWidth={fullWidth} />
+    </InputBase>
   );
 };
 
