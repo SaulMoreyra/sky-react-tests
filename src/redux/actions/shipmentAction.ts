@@ -12,8 +12,8 @@ import ShipmentApi from "api/ShipmentApi";
 import LabelApi from "api/LabelApi";
 import ShipmentUtils from "utils/ShipmentUtils";
 import { Included } from "interfaces/ShipmentResponse";
-import { RootState } from "redux/store";
 import { LabelResponse } from "interfaces/LabelReponse";
+import { RootState } from "redux/store";
 import { setErrorMessage, setLoading, setSuccessMessage } from "./uiActions";
 import { ProviderType } from "redux/reducers/shipmentReducer";
 import {

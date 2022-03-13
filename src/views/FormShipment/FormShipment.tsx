@@ -48,9 +48,7 @@ const FormShipment = () => {
 
   const handleOnChangeNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    const newValue = value
-      .replace(/[^0-9.]/g, "")
-      .replace(/(\..*?)\..*/g, "$1");
+    const newValue = value.replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "");
     dispatch(setShipmentForm({ ...form, [name]: newValue }));
   };
 

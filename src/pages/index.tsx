@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <Backdrop open={loading} />
         <Toast
           variant={message?.variant as ColorVariant}
-          delay={3000}
+          // delay={3000}
           open={Boolean(message)}
           onClose={handleOnClose}
         >

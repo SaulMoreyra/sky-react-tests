@@ -5,4 +5,7 @@ module.exports = {
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
   },
+  snapshotSerializers: [
+    "@emotion/jest/serializer" /* if needed other snapshotSerializers should go here */,
+  ],
 };
