@@ -35,6 +35,7 @@ describe("Button render", () => {
     expect(element).toBeValid();
     element.click();
     expect(onClick).toHaveBeenCalled();
+    expect(element).toHaveTextContent(Label);
   });
 
   it("should render a secondary button", () => {
@@ -49,5 +50,6 @@ describe("Button render", () => {
     expect(element).toBeValid();
     element.click();
     expect(onClick).toHaveBeenCalled();
+    expect(element).toHaveTextContent(Label);
   });
 });

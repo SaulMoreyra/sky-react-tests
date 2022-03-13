@@ -17,7 +17,6 @@ export const ToastStyled = styled.div(({ theme, variant, open }: ToastType) => {
   return {
     backgroundColor: color,
     color: theme?.white,
-    border: `1px solid ${color}`,
     borderRadius: theme?.spacing(3),
     padding: theme?.spacing(1, 3),
     position: "fixed",
@@ -29,15 +28,32 @@ export const ToastStyled = styled.div(({ theme, variant, open }: ToastType) => {
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: theme?.spacing(4),
-    "& > svg": {
+    "& > div": {
       cursor: "pointer",
       height: theme?.spacing(4),
       width: theme?.spacing(4),
       padding: theme?.spacing(1),
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       "&:hover": {
-        backgroundColor: theme?.fade(color, 0.2),
+        backgroundColor: theme?.fade(theme.grey, 0.2),
         borderRadius: theme?.spacing(5),
       },
     },
   };
 });
+
+export const ToastIconContainerStyled = styled.div(({ theme }) => ({
+  cursor: "pointer",
+  height: theme?.spacing(4),
+  width: theme?.spacing(4),
+  padding: theme?.spacing(1),
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "&:hover": {
+    backgroundColor: theme?.fade(theme.grey, 0.2),
+    borderRadius: theme?.spacing(5),
+  },
+}));

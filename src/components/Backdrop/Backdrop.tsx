@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import { Theme } from "@emotion/react";
+import React, { ClassAttributes, ElementType, HTMLAttributes } from "react";
 import { BackdropStyled, LoadingStyled } from "./Backdrop.styles";
 
-type BackdropProps = {
-  open: boolean;
-};
+export type BackdropProps = {
+  theme?: Theme | undefined;
+  as?: ElementType<any> | undefined;
+} & ClassAttributes<HTMLDivElement> &
+  HTMLAttributes<HTMLDivElement> & {
+    open: boolean;
+  };
 
 const Backdrop = ({ open }: BackdropProps) => {
   if (!open) return null;
 
   return (
-    <BackdropStyled>
+    <BackdropStyled data-testid="backdrop">
       <LoadingStyled />
     </BackdropStyled>
   );

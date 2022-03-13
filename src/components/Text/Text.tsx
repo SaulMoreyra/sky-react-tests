@@ -1,8 +1,8 @@
 import React from "react";
 import { Body, Subtitle, Title, Label } from "./Text.styled";
 
-type Props = {
-  variant: "title" | "subtitle" | "body" | "label";
+export type TextProps = {
+  variant?: "title" | "subtitle" | "body" | "label";
   children: React.ReactNode | String | JSX.Element | JSX.Element[];
   align?: "center" | "left" | "right";
 };
@@ -14,7 +14,7 @@ const texts = {
   label: Label,
 };
 
-const Text = ({ variant, children, ...props }: Props) => {
+const Text = ({ variant = "body", children, ...props }: TextProps) => {
   const Component = texts[variant];
   return <Component {...props}>{children}</Component>;
 };
