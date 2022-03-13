@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const BaseButtonStyled = styled.button(({ theme, disabled }) => ({
   border: "none",
   cursor: "pointer",
-  borderRadius: theme?.spacing(1),
+  borderRadius: theme?.spacing(3),
   padding: theme?.spacing(1, 4),
   fontSize: theme?.spacing(2),
   fontWeight: 500,
@@ -11,7 +11,9 @@ const BaseButtonStyled = styled.button(({ theme, disabled }) => ({
   height: theme?.spacing(6),
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
   gap: 10,
+  transition: "0.25s",
   ...(disabled ? { cursor: "not-allowed" } : {}),
 }));
 
