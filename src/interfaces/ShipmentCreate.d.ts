@@ -1,5 +1,11 @@
-/* prettier-ignore */
-
+export type ShipmentCreateType = {
+  zipTo:    string;
+  zipFrom:  string;
+  length:   number | string;
+  height:   number | string;
+  width:    number | string;
+  weight:   number | string;
+};
 export interface ShipmentCreate {
   address_from:                    Address;
   parcels:                         Parcel[];
@@ -7,8 +13,6 @@ export interface ShipmentCreate {
   consignment_note_class_code:     string;
   consignment_note_packaging_code: string;
 }
-
-/* prettier-ignore */
 export interface Address {
   province:  string;
   city:      string;
@@ -23,8 +27,6 @@ export interface Address {
   reference: string;
   contents:  string;
 }
-
-/* prettier-ignore */
 export interface Parcel {
   weight:        number;
   distance_unit: string;
