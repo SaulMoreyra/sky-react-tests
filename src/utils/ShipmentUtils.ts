@@ -41,12 +41,15 @@ const getBetterOption = (options: Included[]) => {
     const [price, daysX1] = getData(current);
     const [accPrice, accDaysX1] = getData(acc);
 
+    // STARNDARIZE VARIABLES
     const priceY1 = price / 100;
     const accPriceY1 = accPrice / 100;
 
+    // WE CALCULATE THE SUM OF THE SQUARE OF THE LEGS
     const hipoPow1 = Math.pow(daysX1, 2) + Math.pow(priceY1, 2);
     const hipoPow2 = Math.pow(accDaysX1, 2) + Math.pow(accPriceY1, 2);
 
+    // WE CALCULATE THE HYPOTENUSE
     const hipo1 = Math.sqrt(hipoPow1);
     const hipo2 = Math.sqrt(hipoPow2);
 
@@ -93,4 +96,7 @@ export default {
   create,
   getOptions,
   getBestOptions,
+  getFasterOption,
+  getCheaperOption,
+  getBetterOption,
 };

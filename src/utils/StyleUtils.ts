@@ -3,7 +3,10 @@ import { ColorVariant } from "interfaces/Color";
 
 const BASE_SPACING = 8;
 export const spacing = (...spaces: number[]) =>
-  spaces.map((space) => `${space * BASE_SPACING}px`).join(" ");
+  spaces
+    .slice(0, 4)
+    .map((space) => `${space * BASE_SPACING}px`)
+    .join(" ");
 
 export const fade = (hex: string, alpha = 1) => {
   if (!/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) throw new Error("Bad Hex Color");
@@ -27,4 +30,10 @@ export const breakpoints = {
   lg: "1024px",
   xl: "1280px",
   xxl: "1920px",
+};
+
+export default {
+  breakpoints,
+  spacing,
+  fade,
 };
