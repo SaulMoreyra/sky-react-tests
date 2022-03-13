@@ -1,3 +1,6 @@
 import { combineReducers } from "redux";
+import shipment from "./shipmentReducer";
+import ui from "./uiReducer";
 
-export default combineReducers({});
+const rootReducer = { shipment, ui };
+export default combineReducers(rootReducer);
