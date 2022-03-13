@@ -44,11 +44,10 @@ export const Body = styled.p(({ theme, align }: TextGlobalType) => ({
   ...(align ? { textAlign: align } : {}),
   color: theme?.grey,
   fontSize: theme?.spacing(2),
-  margin: 0,
-  "@media (max-width: 960px)": {
-    fontSize: theme?.spacing(1.75),
-  },
-  "@media (max-width: 576px)": {
-    fontSize: theme?.spacing(1.5),
-  },
+}));
+
+export const Label = styled.label(({ theme }: TextGlobalType) => ({
+  fontSize: theme?.spacing(1.75),
+  fontWeight: 600,
+  color: theme?.grey,
 }));
