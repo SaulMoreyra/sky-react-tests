@@ -1,3 +1,6 @@
+import { Theme } from "@emotion/react";
+import { ColorVariant } from "interfaces/Color";
+
 const BASE_SPACING = 8;
 export const spacing = (...spaces: number[]) =>
   spaces.map((space) => `${space * BASE_SPACING}px`).join(" ");
@@ -9,6 +12,12 @@ export const fade = (hex: string, alpha = 1) => {
     b = parseInt(hex.slice(5, 7), 16);
 
   return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+};
+
+export const getColor = (theme: Theme, variant: ColorVariant): string => {
+  const { success, error, warning, info } = theme;
+  const COLORS = { success, error, warning, info };
+  return COLORS[variant] || COLORS.info;
 };
 
 export const breakpoints = {
