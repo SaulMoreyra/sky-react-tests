@@ -10,20 +10,15 @@ export type ButtonProps = DetailedHTMLProps<
   disabled?: boolean;
 };
 
-const Button = React.forwardRef(
-  (
-    { variant = "primary", children, ...props }: ButtonProps,
-    ref: React.ForwardedRef<HTMLButtonElement>
-  ) => {
-    const Component =
-      variant === "primary" ? PrimaryButtonStyled : SecondaryButtonStyled;
+const Button = ({ variant = "primary", children, ...props }: ButtonProps) => {
+  const Component =
+    variant === "primary" ? PrimaryButtonStyled : SecondaryButtonStyled;
 
-    return (
-      <Component data-test-id="button" {...props} ref={ref}>
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component data-test-id="button" {...props}>
+      {children}
+    </Component>
+  );
+};
 
 export default Button;
