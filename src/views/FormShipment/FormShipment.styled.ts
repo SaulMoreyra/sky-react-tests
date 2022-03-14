@@ -12,11 +12,9 @@ type ContainerType = {
 
 export const ContainerGlobalStyled = styled.div(({ theme }) => ({
   minHeight: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
   margin: "0 auto",
-  maxWidth: "50%",
+  padding: theme.spacing(15, 0),
+  maxWidth: theme.breakpoints.md,
   "@media (max-width: 960px)": {
     padding: theme.spacing(5, 3),
     maxWidth: "100%",
@@ -36,27 +34,11 @@ const ContainerBase = styled.div(({ theme }) => ({
   gap: theme?.spacing(1),
 }));
 
-export const ContainerSizesStyled = styled(ContainerBase)(() => ({
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
-  "@media (max-width: 960px)": {
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "1fr 1fr",
-  },
-}));
-
 export const ContainerButtonsStyled = styled(ContainerBase)(() => ({
   display: "flex",
   justifyContent: "space-between",
   "@media (max-width: 960px)": {
     flexDirection: "column",
-  },
-}));
-
-export const ContainerZipsStyled = styled(ContainerBase)(() => ({
-  gridTemplateColumns: "1fr 1fr",
-  "@media (max-width: 960px)": {
-    gridTemplateColumns: "auto",
-    gridTemplateRows: "1fr 1fr",
   },
 }));
 
@@ -66,12 +48,4 @@ export const ContainerProviderStyled = styled(ContainerBase)(() => ({
     gridTemplateColumns: "auto",
     gridTemplateRows: "1fr 1fr 1fr",
   },
-}));
-
-export const ContainerTextStyled = styled.div(({ theme }: ContainerType) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  padding: theme?.spacing(0, 1),
-  fontWeight: 700,
 }));
