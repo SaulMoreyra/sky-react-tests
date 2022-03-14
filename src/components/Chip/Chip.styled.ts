@@ -22,5 +22,6 @@ export const ChipStyled = styled.div(({ theme, variant }: ChipType) => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    maxWidth: "max-content",
   };
 });
