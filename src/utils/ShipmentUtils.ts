@@ -1,7 +1,6 @@
 import { ShipmentCreateType, ShipmentCreate } from "interfaces/ShipmentCreate";
 import { Included, ShipmentResponse } from "interfaces/ShipmentResponse";
 import { shipment } from "resources/ShipmentResource";
-import { AllShipmentsResponse } from "interfaces/AllShipmentResponse";
 
 const create = ({
   zipTo,
