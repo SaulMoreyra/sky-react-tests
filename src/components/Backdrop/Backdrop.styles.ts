@@ -18,6 +18,7 @@ export const BackdropStyled = styled.div(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  zIndex: 2,
 }));
 
 export const LoadingStyled = styled.div(({ theme }) => ({
