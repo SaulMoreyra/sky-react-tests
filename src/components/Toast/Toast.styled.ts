@@ -20,7 +20,7 @@ export const ToastStyled = styled.div(({ theme, variant, open }: ToastType) => {
     borderRadius: theme?.spacing(3),
     padding: theme?.spacing(1, 3),
     position: "fixed",
-    top: theme?.spacing(3),
+    top: theme?.spacing(10),
     right: theme?.spacing(3),
     minWidth: theme?.spacing(40),
     transition: "1s",

@@ -44,6 +44,7 @@ export const Body = styled.p(({ theme, align }: TextGlobalType) => ({
   ...(align ? { textAlign: align } : {}),
   color: theme?.grey,
   fontSize: theme?.spacing(2),
+  margin: 0,
 }));
 
 export const Label = styled.label(({ theme }: TextGlobalType) => ({

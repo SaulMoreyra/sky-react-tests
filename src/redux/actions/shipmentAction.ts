@@ -19,6 +19,7 @@ import { ProviderType } from "redux/reducers/shipmentReducer";
 import {
   ERROR_LABEL_CREATION,
   ERROR_LABEL_EXISTS,
+  ERROR_NO_SHIPMENTS,
   ERROR_PROVIDERS,
 } from "resources/ErrorResource";
 
@@ -32,9 +33,9 @@ export const setShipmentOptions = (options?: Included[]) => ({
   payload: options,
 });
 
-export const setProvider = (provider: string) => ({
+export const setProvider = (providerId: string) => ({
   type: SET_PROVIDER_CURRENT,
-  payload: provider,
+  payload: providerId,
 });
 
 export const setCurrentLabel = (label: LabelResponse) => ({

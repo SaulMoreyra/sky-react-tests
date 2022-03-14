@@ -17,19 +17,21 @@ export type ShipmentState = {
   form: ShipmentCreateType;
   currentProvider: null | Included;
   options: Included[] | null;
+  allShipments: [Object];
   currentLabel?: LabelResponse | null;
   bestOption: ProviderType;
 };
 
 const initialState: ShipmentState = {
   form: {
-    zipTo: "71222",
-    zipFrom: "41100",
-    length: "50",
-    height: "30",
-    width: "30",
-    weight: "10",
+    zipTo: "",
+    zipFrom: "",
+    length: "",
+    height: "",
+    width: "",
+    weight: "",
   },
+  allShipments: [{}],
   currentProvider: null,
   options: null,
   currentLabel: null,
