@@ -1,7 +1,7 @@
 import { Card, Text } from "components";
 import React, { Fragment } from "react";
 
-type CardProviderProps = {
+export type CardProviderProps = {
   title: string;
   subtitle: string;
   pricing: string;
@@ -19,6 +19,7 @@ const CardProvider = ({
   children,
   selected,
   onClick,
+  ...props
 }: CardProviderProps) => {
   return (
     <Card
@@ -26,6 +27,7 @@ const CardProvider = ({
       subtitle={subtitle}
       selected={selected}
       onClick={onClick}
+      {...props}
     >
       <Fragment>
         <Text variant="body">

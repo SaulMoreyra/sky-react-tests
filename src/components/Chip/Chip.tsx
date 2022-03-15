@@ -8,11 +8,7 @@ export type ChipProps = {
 };
 
 const Chip = ({ children, ...props }: ChipProps) => {
-  return (
-    <ChipStyled data-testid="chip" {...props}>
-      {children}
-    </ChipStyled>
-  );
+  return <ChipStyled {...props}>{children}</ChipStyled>;
 };
 
 export default Chip;

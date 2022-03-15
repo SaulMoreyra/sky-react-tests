@@ -34,12 +34,12 @@ const SliderRange = ({
   label,
 }: SliderRangeProps) => {
   const theme = useTheme();
-
+  const [minValue, maxValue] = values;
   return (
     <SliderRangeContainerStyled>
       <RangeContainerStyled>
         <Range
-          values={values}
+          values={[minValue, maxValue > MAX ? MAX : maxValue]}
           step={STEP}
           min={MIN}
           max={MAX}

@@ -11,7 +11,7 @@ expect.extend(matchers);
 
 const ChipWrapped = ({ ...props }: ChipProps) => (
   <ThemeProvider>
-    <Chip {...props} />
+    <Chip data-testid="chip" {...props} />
   </ThemeProvider>
 );
 

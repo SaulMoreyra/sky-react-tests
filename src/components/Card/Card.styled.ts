@@ -36,7 +36,7 @@ export const CardArticleContainer = styled.div(({ theme }) => ({
   flex: "0 0 50%",
   display: "flex",
   flexDirection: "column",
-  ":nth-child(2n)": {
+  ":nth-of-type(2n)": {
     alignItems: "center",
   },
 }));

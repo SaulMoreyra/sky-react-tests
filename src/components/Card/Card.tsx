@@ -16,9 +16,10 @@ const CardProvider = ({
   children,
   selected,
   onClick,
+  ...props
 }: CardProps) => {
   return (
-    <CardContainerStyled onClick={onClick} selected={selected}>
+    <CardContainerStyled onClick={onClick} selected={selected} {...props}>
       <CardArticleContainer>
         <Text variant="subtitle">{title}</Text>
         <Text variant="body">{subtitle}</Text>
