@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --env=jsdom --watchAll"
+    "test": "jest --env=jsdom"
   },
   "dependencies": {
     "@emotion/react": "11.8.1",
