@@ -59,14 +59,15 @@ export const getShipmentOptions = (shipment: ShipmentCreateType) => {
       const createdShipment = ShipmentUtils.create(shipment);
       const result = await ShipmentApi.create(createdShipment);
       const options = ShipmentUtils.getOptions(result);
-      const bestOptions = ShipmentUtils.getBestOptions(options as Included[]);
 
+      if (!options?.length) throw Error(ERROR_NO_SHIPMENTS);
+      const bestOptions = ShipmentUtils.getBestOptions(options as Included[]);
       dispatch(setShipmentOptions(options));
       dispatch(setBestOptions(bestOptions as ProviderType));
       dispatch(setProvider(bestOptions.better as string));
       dispatch(setSuccessMessage("Proveedores obtenidos"));
-    } catch (error) {
-      dispatch(setErrorMessage(ERROR_PROVIDERS));
+    } catch ({ message }: any) {
+      dispatch(setErrorMessage((message as string) || ERROR_PROVIDERS));
     }
     dispatch(setLoading(false));
   };
@@ -78,15 +79,13 @@ export const getLabel = () => {
     try {
       const { currentProvider } = getState().shipment;
       const response = await LabelApi.create(Number(currentProvider?.id));
-      if (response.data?.attributes?.status === "ERROR") {
-        dispatch(setErrorMessage(ERROR_LABEL_CREATION));
-        dispatch(setLoading(false));
-        return;
-      }
+      if (response.data?.attributes?.status === "ERROR")
+        throw Error(ERROR_LABEL_CREATION);
+
       dispatch(setCurrentLabel(response));
       dispatch(setSuccessMessage("Guia obtenida"));
-    } catch (error: any) {
-      dispatch(setErrorMessage(ERROR_LABEL_EXISTS));
+    } catch ({ message }: any) {
+      dispatch(setErrorMessage((message as string) || ERROR_LABEL_EXISTS));
     }
     dispatch(setLoading(false));
   };
