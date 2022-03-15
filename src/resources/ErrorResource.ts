@@ -4,3 +4,5 @@ export const ERROR_LABEL_CREATION =
   "Ocurrió un problema, intenta con otro proveedor";
 export const ERROR_NO_SHIPMENTS =
   "Ha ocurrido un error al consultar los envios";
+export const ERROR_NO_PROVIDERS =
+  "No encontramos un proveedor que pueda trasnportar su paquete 😖";
