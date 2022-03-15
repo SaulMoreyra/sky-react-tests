@@ -9,16 +9,18 @@ import {
   RangeContainerStyled,
 } from "./ProviderItems.styled";
 
+const PRICE_STEP = 100;
+const DAYS_STEP = 1;
+
 const ProviderItems = () => {
   const { options, currentProvider, bestOption, currentLabel } = useSelector<
     RootState,
     ShipmentState
   >(({ shipment }) => shipment);
   const dispatch = useDispatch();
-  const guideRef = useRef<HTMLAnchorElement>();
 
-  const [price, setPrice] = useState([0, 2000]);
-  const [days, setDays] = useState([0, 30]);
+  const [price, setPrice] = useState([0, 1000]);
+  const [days, setDays] = useState([0, 10]);
 
   const handleOnChangeProviderName = (providerId: string) => () => {
     dispatch(setProvider(providerId));
@@ -54,6 +56,30 @@ const ProviderItems = () => {
     return daysFilter;
   }, [options, days, price]);
 
+  const MAX_PRICE = useMemo(() => {
+    if (!options) return 1000;
+    const maxPrice = options.reduce(
+      (acc, current) =>
+        Number(current.attributes?.amount_local) > acc
+          ? Number(current.attributes?.amount_local)
+          : acc,
+      0
+    );
+    return maxPrice + PRICE_STEP;
+  }, [options]);
+
+  const MAX_DAYS = useMemo(() => {
+    if (!options) return 30;
+    const maxDays = options.reduce(
+      (acc, current) =>
+        Number(current.attributes?.days) > acc
+          ? Number(current.attributes?.days)
+          : acc,
+      0
+    );
+    return maxDays + 5;
+  }, [options]);
+
   if (!options) return null;
 
   return (
@@ -64,17 +90,17 @@ const ProviderItems = () => {
           label="Precios"
           values={price}
           onChange={setPrice}
-          step={100}
+          step={PRICE_STEP}
           min={0}
-          max={2000}
+          max={MAX_PRICE}
         />
         <SliderRange
           label="Dias"
           values={days}
           onChange={setDays}
-          step={1}
+          step={DAYS_STEP}
           min={0}
-          max={30}
+          max={MAX_DAYS}
         />
       </RangeContainerStyled>
       <GridCardContainer>
