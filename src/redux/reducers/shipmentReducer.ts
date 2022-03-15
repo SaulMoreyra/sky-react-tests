@@ -8,6 +8,9 @@ import {
   SET_LABEL_CURRENT,
   SET_BEST_OPTION,
   RESET_STATE,
+  SET_MAX_RANGES,
+  SET_PRICES_RANGES,
+  SET_DAYS_RANGES,
 } from "../types/shipmentTypes";
 
 export type PriceType = { id?: string; price?: string };
@@ -20,6 +23,9 @@ export type ShipmentState = {
   allShipments: [Object];
   currentLabel?: LabelResponse | null;
   bestOption: ProviderType;
+  maxRanges: { price: number; day: number };
+  prices: Array<number>;
+  days: Array<number>;
 };
 
 const initialState: ShipmentState = {
@@ -40,6 +46,9 @@ const initialState: ShipmentState = {
     faster: "",
     cheaper: "",
   },
+  maxRanges: { price: 1000, day: 10 },
+  prices: [0, 900],
+  days: [0, 1],
 };
 
 type ActionType = {
@@ -50,7 +59,10 @@ type ActionType = {
     | typeof SET_PROVIDER_CURRENT
     | typeof SET_LABEL_CURRENT
     | typeof SET_BEST_OPTION
-    | typeof RESET_STATE;
+    | typeof RESET_STATE
+    | typeof SET_PRICES_RANGES
+    | typeof SET_DAYS_RANGES
+    | typeof SET_MAX_RANGES;
 };
 
 const reducer = (state = initialState, action: ActionType): ShipmentState => {
@@ -75,6 +87,23 @@ const reducer = (state = initialState, action: ActionType): ShipmentState => {
     case SET_BEST_OPTION: {
       const { payload } = action;
       return { ...state, bestOption: payload };
+    }
+    case SET_MAX_RANGES: {
+      const { maxPrice, maxDays } = action.payload;
+      return {
+        ...state,
+        maxRanges: { price: maxPrice, day: maxDays },
+        prices: [0, maxPrice],
+        days: [0, maxDays],
+      };
+    }
+    case SET_PRICES_RANGES: {
+      const prices = action.payload;
+      return { ...state, prices: prices };
+    }
+    case SET_DAYS_RANGES: {
+      const days = action.payload;
+      return { ...state, days };
     }
     case RESET_STATE: {
       return initialState;

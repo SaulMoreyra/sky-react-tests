@@ -92,6 +92,27 @@ const getBestOptions = (options: Included[]) => {
   return { better, cheaper, faster };
 };
 
+const getRanges = (options: Included[]) => {
+  const maxPrice = options.reduce(
+    (acc, current) =>
+      Number(current.attributes?.total_pricing) > acc
+        ? Number(current.attributes?.total_pricing)
+        : acc,
+    0
+  );
+
+  const maxDays = options.reduce(
+    (acc, current) =>
+      Number(current.attributes?.days) > acc
+        ? Number(current.attributes?.days)
+        : acc,
+    0
+  );
+  const newMaxDays = maxDays + 1;
+  const newMaxPrice = (Math.round(maxPrice / 100) + 1) * 100;
+  return { maxDays: newMaxDays, maxPrice: newMaxPrice };
+};
+
 export default {
   create,
   getOptions,
@@ -99,4 +120,5 @@ export default {
   getFasterOption,
   getCheaperOption,
   getBetterOption,
+  getRanges,
 };

@@ -23,6 +23,7 @@ export const CardContainerStyled = styled.div(
     backgroundColor: selected
       ? theme?.fade(theme?.primary, 0.05)
       : theme?.white,
+    ...(selected ? { borderBottomWidth: theme?.spacing(1) } : {}),
     "&:hover": {
       ...(selected
         ? {}

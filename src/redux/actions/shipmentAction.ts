@@ -5,6 +5,9 @@ import {
   SET_LABEL_CURRENT,
   SET_BEST_OPTION,
   RESET_STATE,
+  SET_MAX_RANGES,
+  SET_PRICES_RANGES,
+  SET_DAYS_RANGES,
 } from "../types/shipmentTypes";
 
 import { ShipmentCreateType } from "interfaces/ShipmentCreate";
@@ -48,6 +51,23 @@ export const setBestOptions = (bestOption: ProviderType) => ({
   payload: bestOption,
 });
 
+export const setPrices = (prices: Array<number>) => ({
+  type: SET_PRICES_RANGES,
+  payload: prices,
+});
+
+export const setMaxRanges = (ranges: {
+  maxDays: number;
+  maxPrice: number;
+}) => ({
+  type: SET_MAX_RANGES,
+  payload: ranges,
+});
+export const setDays = (days: Array<number>) => ({
+  type: SET_DAYS_RANGES,
+  payload: days,
+});
+
 export const resetState = () => ({
   type: RESET_STATE,
 });
@@ -61,10 +81,13 @@ export const getShipmentOptions = (shipment: ShipmentCreateType) => {
       const options = ShipmentUtils.getOptions(result);
 
       if (!options?.length) throw Error(ERROR_NO_SHIPMENTS);
+      const ranges = ShipmentUtils.getRanges(options as Included[]);
+      dispatch(setMaxRanges(ranges));
       const bestOptions = ShipmentUtils.getBestOptions(options as Included[]);
       dispatch(setShipmentOptions(options));
       dispatch(setBestOptions(bestOptions as ProviderType));
       dispatch(setProvider(bestOptions.better as string));
+
       dispatch(setSuccessMessage("Proveedores obtenidos"));
     } catch ({ message }: any) {
       dispatch(setErrorMessage((message as string) || ERROR_PROVIDERS));

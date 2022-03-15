@@ -1,7 +1,7 @@
 import { CardProvider, Chip, SliderRange, Text } from "components";
-import React, { Fragment, useCallback, useMemo, useRef, useState } from "react";
+import React, { Fragment, useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProvider } from "redux/actions/shipmentAction";
+import { setDays, setPrices, setProvider } from "redux/actions/shipmentAction";
 import { ShipmentState } from "redux/reducers/shipmentReducer";
 import { RootState } from "redux/store";
 import {
@@ -13,17 +13,20 @@ const PRICE_STEP = 100;
 const DAYS_STEP = 1;
 
 const ProviderItems = () => {
-  const { options, currentProvider, bestOption, currentLabel } = useSelector<
-    RootState,
-    ShipmentState
-  >(({ shipment }) => shipment);
+  const { options, currentProvider, bestOption, prices, days, maxRanges } =
+    useSelector<RootState, ShipmentState>(({ shipment }) => shipment);
   const dispatch = useDispatch();
-
-  const [price, setPrice] = useState([0, 1000]);
-  const [days, setDays] = useState([0, 10]);
 
   const handleOnChangeProviderName = (providerId: string) => () => {
     dispatch(setProvider(providerId));
+  };
+
+  const handleChangesPricesRange = (_prices: Array<number>) => {
+    dispatch(setPrices(_prices));
+  };
+
+  const handleChangesDaysRange = (_days: Array<number>) => {
+    dispatch(setDays(_days));
   };
 
   const bestOptionsLabel = useCallback(
@@ -45,40 +48,17 @@ const ProviderItems = () => {
   const OPTIONS_FILTER = useMemo(() => {
     const priceFilter = options?.filter(
       ({ attributes }) =>
-        Number(attributes?.total_pricing) > price[0] &&
-        Number(attributes?.total_pricing) < price[1]
+        Number(attributes?.total_pricing) >= prices[0] &&
+        Number(attributes?.total_pricing) <= prices[1]
     );
     const daysFilter = priceFilter?.filter(
       ({ attributes }) =>
-        Number(attributes?.days) > days[0] && Number(attributes?.days) < days[1]
+        Number(attributes?.days) >= days[0] &&
+        Number(attributes?.days) <= days[1]
     );
 
     return daysFilter;
-  }, [options, days, price]);
-
-  const MAX_PRICE = useMemo(() => {
-    if (!options) return 1000;
-    const maxPrice = options.reduce(
-      (acc, current) =>
-        Number(current.attributes?.amount_local) > acc
-          ? Number(current.attributes?.amount_local)
-          : acc,
-      0
-    );
-    return maxPrice + PRICE_STEP;
-  }, [options]);
-
-  const MAX_DAYS = useMemo(() => {
-    if (!options) return 30;
-    const maxDays = options.reduce(
-      (acc, current) =>
-        Number(current.attributes?.days) > acc
-          ? Number(current.attributes?.days)
-          : acc,
-      0
-    );
-    return maxDays + 5;
-  }, [options]);
+  }, [options, days, prices]);
 
   if (!options) return null;
 
@@ -88,19 +68,19 @@ const ProviderItems = () => {
       <RangeContainerStyled>
         <SliderRange
           label="Precios"
-          values={price}
-          onChange={setPrice}
+          values={prices}
+          onChange={handleChangesPricesRange}
           step={PRICE_STEP}
           min={0}
-          max={MAX_PRICE}
+          max={maxRanges.price}
         />
         <SliderRange
           label="Dias"
           values={days}
-          onChange={setDays}
+          onChange={handleChangesDaysRange}
           step={DAYS_STEP}
           min={0}
-          max={MAX_DAYS}
+          max={maxRanges.day}
         />
       </RangeContainerStyled>
       <GridCardContainer>

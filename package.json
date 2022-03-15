@@ -2,6 +2,7 @@
   "name": "skydropx-react-test",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api-demo.skydropx.com/v1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

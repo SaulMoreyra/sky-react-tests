@@ -6,6 +6,13 @@ Es mis ultimas pruebas me estuvo bloqueando CORS 😞
 ## Demo
 [https://sky-react-tests.vercel.app/](https://sky-react-tests.vercel.app/)
 
+## Stack
+Next
+Typescript
+Emotion
+Redux
+Redux Thunk
+
 Environment Variables
 ```code
 NEXT_PUBLIC_API_URL=https://api-demo.skydropx.com/v1

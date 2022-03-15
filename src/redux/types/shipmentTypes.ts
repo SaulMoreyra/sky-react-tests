@@ -4,3 +4,6 @@ export const SET_PROVIDER_CURRENT = "@set/provider/current";
 export const SET_LABEL_CURRENT = "@set/label/current";
 export const SET_BEST_OPTION = "@set/best/option";
 export const RESET_STATE = "@reset/state";
+export const SET_MAX_RANGES = "@set/max/ranges";
+export const SET_PRICES_RANGES = "@set/prices/range";
+export const SET_DAYS_RANGES = "@set/days/ranges";
